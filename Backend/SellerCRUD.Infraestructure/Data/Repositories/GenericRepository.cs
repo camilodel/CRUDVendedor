@@ -22,7 +22,10 @@ namespace SellerCRUD.Infraestructure.Data.Repositories
         {
             return _appDbContext.Set<TEntity>().ToList();
         }
-
+        public virtual TEntity GetSingle(object key)
+        {
+            return _appDbContext.Set<TEntity>().Find(key);
+        }
         public ValueTask<TEntity> GetByIdAsync(int id)
         {
             return _appDbContext.Set<TEntity>().FindAsync(id);

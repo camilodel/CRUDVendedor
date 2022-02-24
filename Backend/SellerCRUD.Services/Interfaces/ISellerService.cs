@@ -10,5 +10,6 @@ namespace SellerCRUD.Services.Interfaces
         Task<ServiceResponse<List<SellerDto>>> GetSellersAsync();
         Task<ServiceResponse<SellerDto>> CreateSellerAsync(CreateSellerDto createSeller);
         Task<ServiceResponse<SellerDto>> UpdateSellerAsync(int id, SellerDto seller);
+        Task<ServiceResponse<List<SellerDto>>> DeleteSellersAsync(IEnumerable<int> ids);
     }
 }

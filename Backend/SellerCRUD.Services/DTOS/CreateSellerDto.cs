@@ -2,5 +2,11 @@
 {
     public class CreateSellerDto
     {
+        public CreateSellerDto() { }
+
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public int IdentificationNumber { get; set; }
+        public CreateCityDto City { get; set; }
     }
 }

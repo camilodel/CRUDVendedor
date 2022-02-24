@@ -1,0 +1,29 @@
+.container-table {
+  max-height: 720px;
+  overflow: auto;
+}
+table {
+  width: 100%;
+  .colorButton {
+    color: teal;
+  }
+}
+.spinner{
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spanActive {
+  background: #009CA8;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+.spanInactive {
+  background: #F58270;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}

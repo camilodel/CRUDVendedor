@@ -1,0 +1,9 @@
+.card-container{
+  margin: 10px;
+  z-index: 0;
+  .positionButton {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

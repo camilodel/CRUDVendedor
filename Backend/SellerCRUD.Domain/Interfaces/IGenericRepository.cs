@@ -8,6 +8,7 @@ namespace SellerCRUD.Domain.Interfaces
     {
         IEnumerable<TEntity> GetAll();
         ValueTask<TEntity> GetByIdAsync(int id);
+        TEntity GetSingle(object key);
         void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);

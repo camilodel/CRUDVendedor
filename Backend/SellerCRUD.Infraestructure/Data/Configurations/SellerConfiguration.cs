@@ -8,7 +8,7 @@ namespace SellerCRUD.Infraestructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Seller> builder)
         {
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.Property(p => p.Id).ValueGeneratedOnAdd().HasDefaultValueSql("NEXT VALUE FOR shared.OrderNumbers");
             builder.Property(p => p.Name).HasMaxLength(50);
             builder.Property(p => p.LastName).HasMaxLength(50);
             builder.Property(p => p.IdentificationNumber).HasMaxLength(10);

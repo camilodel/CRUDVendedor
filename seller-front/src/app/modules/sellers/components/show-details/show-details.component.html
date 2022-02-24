@@ -1,0 +1,21 @@
+<mat-card class="dialog-container">
+  <h1>DETALLES DEL REGISTRO</h1>
+  <mat-list>
+
+    <mat-divider></mat-divider>
+    <mat-list-item><h3><b>CÓDIGO: </b>{{detailsItem.id}}</h3></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><h3><b>NOMBRES: </b>{{detailsItem.name}}</h3></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><h3><b>APELLIDOS: </b>{{detailsItem.lastName}}</h3></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><h3><b>N° IDENTIFICACIÓN: </b>{{detailsItem.identificationNumber}}</h3></mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item><h3><b>CIUDAD: </b>{{detailsItem.cityId}}</h3></mat-list-item>
+
+  </mat-list>
+</mat-card>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="warn" mat-dialog-close><mat-icon>cancel</mat-icon>Cerrar</button>
+</mat-dialog-actions>

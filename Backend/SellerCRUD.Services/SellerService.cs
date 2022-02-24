@@ -42,14 +42,20 @@ namespace SellerCRUD.Services
         {
             try
             {
-                Domain.Entities.Seller sellerEntity = _mapper.Map<CreateSellerDto, Domain.Entities.Seller>(createSeller);
+                Domain.Entities.Seller sellerEntity = _mapper.Map<Domain.Entities.Seller>(createSeller);
 
                 if (sellerEntity.Name == null || sellerEntity.IdentificationNumber <= 0)
-                    throw new ArgumentException("Seller Name, Seller identification Nummber or a required property is null");
+                    throw new ArgumentException("Seller Name, Seller identification Number or a required property is null");
 
                 sellerEntity.CreateDate = DateTime.Now;
 
                 _unitOfWork.BeginTransaction();
+
+                //if (sellerEntity.City.Description.ToUpper() == createSeller.City.Description.ToUpper())
+                //{
+                //    _unitOfWork.SellerRepository.Update(sellerEntity.City);
+                //}
+
                 _unitOfWork.SellerRepository.Create(sellerEntity);
                 await _unitOfWork.CommitAsync();
 
@@ -88,6 +94,33 @@ namespace SellerCRUD.Services
             {
                 _logger.LogError($"Error in SellerService::UpdateSellerAsync:: {ex.Message}");
                 return new ServiceResponse<SellerDto>($"Error in SellerService::UpdateSellerAsync:: {ex.Message}");
+            }
+        }
+
+        public async Task<ServiceResponse<List<SellerDto>>> DeleteSellersAsync(IEnumerable<int> ids)
+        {
+            try
+            {
+                _unitOfWork.BeginTransaction();
+                List<SellerDto> sellersDeleted = new List<SellerDto>();
+                foreach (var thirdPartyId in ids)
+                {
+                    var seller = _unitOfWork.SellerRepository.GetSingle(thirdPartyId);
+
+                    if (seller != null)
+                    {
+                        _unitOfWork.SellerRepository.Delete(seller);
+                        sellersDeleted.Add(_mapper.Map<SellerDto>(seller));
+                    }
+                }
+
+                await _unitOfWork.CommitAsync();
+                return new ServiceResponse<List<SellerDto>>(sellersDeleted);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error en SellerService::DeleteSellersAsync:: {ex.Message}");
+                return new ServiceResponse<List<SellerDto>>($"Error en SellerService::DeleteSellersAsync:: {ex.Message}");
             }
         }
     }

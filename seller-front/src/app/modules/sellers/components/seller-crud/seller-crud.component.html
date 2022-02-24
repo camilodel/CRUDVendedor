@@ -1,0 +1,22 @@
+<div>
+  <mat-card class="card-container">
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <mat-card-title>CRUD BÁSICO</mat-card-title>
+        <mat-card-subtitle>Camilo Delgado</mat-card-subtitle>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 positionButton">
+        <button mat-raised-button color="primary" (click)="openDialog()">
+          <mat-icon aria-hidden="false">add</mat-icon>
+          <span>
+            Agregar registro
+          </span>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="card-container">
+    <app-table></app-table>
+  </mat-card>
+
+</div>
