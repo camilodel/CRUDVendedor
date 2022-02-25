@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class GlobalService {
   @Output() update: EventEmitter<any> = new EventEmitter();
 
-  private api: string = 'http://172.168.3.76:49786/api/';
+  private api: string = 'http://172.168.3.76:1493/api/';
 
   constructor(
     private http: HttpClient,

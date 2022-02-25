@@ -14,18 +14,28 @@ namespace SellerCRUD.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
+
+        /// <summary>
+        /// Inyección de dependencias
+        /// </summary>
+        /// <param name="mapper">automapper</param>
+        /// <param name="unitOfWork">unidad de trabajo de los repositorios</param>
+        /// <param name="loggerManager">logger</param>
         public SellerService(IMapper mapper, IUnitOfWork unitOfWork,ILoggerManager loggerManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = loggerManager;
         }
-
+        /// <summary>
+        /// Método para obtener todos los Vendedores
+        /// </summary>
+        /// <returns>Todos los vendedores creados en la BD</returns>
         public async Task<ServiceResponse<List<SellerDto>>> GetSellersAsync()
         {
             try
             {
-                var sellers = await _unitOfWork.SellerRepository.GetAllAsync();
+                var sellers = await _unitOfWork.SellerRepository.GetSellersAsync();
 
                 var sellersDto = _mapper.Map<List<SellerDto>>(sellers);
 
@@ -37,7 +47,11 @@ namespace SellerCRUD.Services
                 throw;
             }
         }
-
+        /// <summary>
+        /// Método para crear Vendedores
+        /// </summary>
+        /// <param name="createSeller">Objeto de la clase DTO de creación de vendedores</param>
+        /// <returns>Creación de datos en la BD</returns>
         public async Task<ServiceResponse<SellerDto>> CreateSellerAsync(CreateSellerDto createSeller)
         {
             try
@@ -62,7 +76,12 @@ namespace SellerCRUD.Services
                 throw;
             }
         }
-
+        /// <summary>
+        /// Método para actualizar Vendedores
+        /// </summary>
+        /// <param name="id">Id de Vendedor</param>
+        /// <param name="seller">objeto de la clase DTO Vendedores</param>
+        /// <returns>Actualziación de datos en BD</returns>
         public async Task<ServiceResponse<SellerDto>> UpdateSellerAsync(int id, SellerDto seller)
         {
             try
@@ -92,7 +111,11 @@ namespace SellerCRUD.Services
                 return new ServiceResponse<SellerDto>($"Error in SellerService::UpdateSellerAsync:: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Método para eliminar varios registros en la BD
+        /// </summary>
+        /// <param name="ids">Lista de ids de Vendedores</param>
+        /// <returns>Varios registros eliminados de la BD</returns>
         public async Task<ServiceResponse<List<SellerDto>>> DeleteSellersAsync(IEnumerable<int> ids)
         {
             try

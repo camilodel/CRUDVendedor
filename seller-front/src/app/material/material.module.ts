@@ -28,6 +28,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 
+import { MatSelectFilterModule } from 'mat-select-filter';
+
 
 
 
@@ -63,6 +65,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSnackBarModule,
     MatTableModule,
     MatSlideToggleModule,
+    MatSelectFilterModule
   ]
 })
 export class MaterialModule { }

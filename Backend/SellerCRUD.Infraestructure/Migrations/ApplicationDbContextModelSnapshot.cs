@@ -52,7 +52,7 @@ namespace SellerCRUD.Infraestructure.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("NEXT VALUE FOR shared.OrderNumbers");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
@@ -84,9 +84,7 @@ namespace SellerCRUD.Infraestructure.Migrations
                 {
                     b.HasOne("SellerCRUD.Domain.Entities.City", "City")
                         .WithMany("Sellers")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityId");
 
                     b.Navigation("City");
                 });

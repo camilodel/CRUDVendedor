@@ -9,6 +9,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowDetailsComponent } from './components/show-details/show-details.component';
+import { CitiesDialogComponent } from './components/cities-dialog/cities-dialog.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ShowDetailsComponent } from './components/show-details/show-details.com
     SellerCrudComponent,
     TableComponent,
     DialogComponent,
-    ShowDetailsComponent
+    ShowDetailsComponent,
+    CitiesDialogComponent
   ],
   imports: [
     CommonModule,

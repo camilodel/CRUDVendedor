@@ -1,3 +1,4 @@
+import { CitiesDialogComponent } from './../cities-dialog/cities-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -16,6 +17,13 @@ export class SellerCrudComponent implements OnInit {
 
   openDialog(): void {
     this.dialog.open(DialogComponent, {
+      width: '350px',
+      disableClose: true
+    });
+  }
+
+  openDialogCities(): void {
+    this.dialog.open(CitiesDialogComponent, {
       width: '350px',
       disableClose: true
     });

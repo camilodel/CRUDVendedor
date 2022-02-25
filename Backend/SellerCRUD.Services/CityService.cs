@@ -14,13 +14,23 @@ namespace SellerCRUD.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILoggerManager _logger;
+
+        /// <summary>
+        /// Inyección de dependencias
+        /// </summary>
+        /// <param name="mapper">automapper</param>
+        /// <param name="unitOfWork">unidad de trabajo de los repositorios</param>
+        /// <param name="loggerManager">logger</param>
         public CityService(IMapper mapper, IUnitOfWork unitOfWork,ILoggerManager loggerManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = loggerManager;
         }
-
+        /// <summary>
+        /// Método para obtener todos las ciudades
+        /// </summary>
+        /// <returns>Todos los vendedores creados en la BD</returns>
         public async Task<ServiceResponse<List<CityDto>>> GetCitiesAsync()
         {
             try
@@ -37,7 +47,11 @@ namespace SellerCRUD.Services
                 throw;
             }
         }
-
+        /// <summary>
+        /// Método para crear Ciudades
+        /// </summary>
+        /// <param name="createCity">Objeto de la clase DTO de creación de ciudad</param>
+        /// <returns>Creación de datos en la BD</returns>
         public async Task<ServiceResponse<CityDto>> CreateCityAsync(CreateCityDto createCity)
         {
             try
@@ -62,7 +76,12 @@ namespace SellerCRUD.Services
                 throw;
             }
         }
-
+        /// <summary>
+        /// Método para actualizar Ciudades
+        /// </summary>
+        /// <param name="id">Id de Ciudad</param>
+        /// <param name="city">objeto de la clase DTO Ciudad</param>
+        /// <returns>Actualización de datos en BD</returns>
         public async Task<ServiceResponse<CityDto>> UpdateCityAsync(int id, CityDto city)
         {
             try
@@ -90,7 +109,11 @@ namespace SellerCRUD.Services
                 return new ServiceResponse<CityDto>($"Error in CityService::UpdateCityAsync:: {ex.Message}");
             }
         }
-
+        /// <summary>
+        /// Método para eliminar varios registros en la BD
+        /// </summary>
+        /// <param name="ids">Lista de ids de Ciudades</param>
+        /// <returns>Varios registros eliminados de la BD</returns>
         public async Task<ServiceResponse<List<CityDto>>> DeleteCitiesAsync(IEnumerable<int> ids)
         {
             try

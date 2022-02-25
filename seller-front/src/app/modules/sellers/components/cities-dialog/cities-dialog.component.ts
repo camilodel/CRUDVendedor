@@ -1,75 +1,44 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { GlobalService } from 'src/app/services/global.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  selector: 'app-cities-dialog',
+  templateUrl: './cities-dialog.component.html',
+  styleUrls: ['./cities-dialog.component.scss']
 })
-export class DialogComponent implements OnInit {
+export class CitiesDialogComponent implements OnInit {
   public dataForm: FormGroup;
   public tittleDialog = 'Registrar';
   public buttonDialog = 'Registrar';
   id: string | undefined;
 
-  cities: any[];
-  public filteredCitiesList;
-
   constructor(
     private formBuilder: FormBuilder,
     private service: GlobalService,
     public dialog: MatDialog,
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<CitiesDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public dataModal: any
   ) {
     this.dataForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      identificationNumber: ['', Validators.required],
-      cityId: [''],
+      description: [''],
     });
   }
 
   // INICIO GET DATA
-  get name(): any {
-    return this.dataForm.get('name');
-  }
-  get lastName(): any {
-    return this.dataForm.get('lastName');
-  }
-  get identificationNumber(): any {
-    return this.dataForm.get('identificationNumber');
-  }
-  get cityId(): any {
-    return this.dataForm.get('cityId');
+  get description(): any {
+    return this.dataForm.get('description');
   }
   // FIN GET DATA
 
   ngOnInit(): void {
-    this.updateDataConnection();
-    this.getCities();
-    console.log(this.getCities());
-
-  }
-
-  getCities(): void {
-    this.service.getData('City/Cities').subscribe(
-      (result) => {
-        this.cities = result;
-        this.filteredCitiesList = this.cities.slice();
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 
   saveData(values: any): void {
     if (this.id === undefined)  {
-      this.service.postData('Seller/CreateSeller/', values).subscribe((result) => {
+      this.service.postData('City/CreateCity/', values).subscribe((result) => {
         Swal.fire({
           icon: 'success',
           title:'Excelente!!',
@@ -113,29 +82,6 @@ export class DialogComponent implements OnInit {
       });
     }
 
-  }
-
-  editData(item: any): any {
-    this.id = item.id;
-    this.tittleDialog = 'Modificar';
-    this.buttonDialog = 'Modificar';
-
-    this.dataForm.patchValue({
-      name: item.name,
-      lastName: item.lastName,
-      identificationNumber: item.identificationNumber,
-      cityId: item.cityId,
-    });
-    console.log(item);
-  }
-
-  updateDataConnection(): void {
-    if (this.dataModal) {
-      const data: any = this.dataModal.data;
-      this.editData(data);
-    } else {
-      this.dataForm.reset();
-    }
   }
 
 }
