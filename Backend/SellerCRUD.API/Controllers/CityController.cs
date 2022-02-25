@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CityCRUD.Services.DTOS;
-using CityCRUD.Services.Interfaces;
+using SellerCRUD.Services.DTOS;
+using SellerCRUD.Services.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ namespace CityCRUD.API.Controllers
         }
 
         // GET: /City/Cities
-        [HttpGet("Citiess")]
+        [HttpGet("Cities")]
         public async Task<IActionResult> GetAllCitiesAsync()
         {
             var result = await _cityService.GetCitiesAsync();

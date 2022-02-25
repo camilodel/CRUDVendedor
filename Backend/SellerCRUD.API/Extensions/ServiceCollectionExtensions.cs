@@ -14,11 +14,13 @@ namespace SellerCRUD.API.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<ISellerService, SellerService>();
+            services.AddScoped<ICityService, CityService>();
         }
 
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<ISellerRepository, SellerRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         }

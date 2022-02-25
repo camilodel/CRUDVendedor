@@ -9,12 +9,6 @@ namespace SellerCRUD
             CreateMap<Domain.Entities.Seller, SellerDto>();
             CreateMap<CreateSellerDto, Domain.Entities.Seller>();
             CreateMap<SellerDto, Domain.Entities.Seller>();
-
-            CreateMap<Domain.Entities.Seller, SellerDto>().ReverseMap();
-            CreateMap<CreateSellerDto, Domain.Entities.Seller>().ReverseMap();
-
-            CreateMap<Domain.Entities.City, CityDto>();
-            CreateMap<CreateCityDto, Domain.Entities.City>();
         }
     }
 }

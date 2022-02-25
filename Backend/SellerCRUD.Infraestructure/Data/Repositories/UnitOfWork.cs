@@ -10,12 +10,14 @@ namespace SellerCRUD.Infraestructure.Data.Repositories
         private IDbContextTransaction _transaction;
 
         public ISellerRepository SellerRepository { get; }
+        public ICityRepository CityRepository { get; }
 
         public UnitOfWork(ApplicationDbContext appDbContext)
         {
             _appDbContext = appDbContext;
 
             SellerRepository = new SellerRepository(appDbContext);
+            CityRepository = new CityRepository(appDbContext);
         }
 
         public void Commit()

@@ -12,12 +12,12 @@ namespace SellerCRUD.Infraestructure
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            mb.HasSequence<int>("OrderNumbers", schema: "shared")
+                .StartsAt(10)
+                .IncrementsBy(10);
+
             mb.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(mb);
-
-            mb.HasSequence<int>("OrderNumbers", schema: "shared")
-            .StartsAt(10)
-            .IncrementsBy(10);
         }
     }
 }

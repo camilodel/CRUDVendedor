@@ -50,12 +50,6 @@ namespace SellerCRUD.Services
                 sellerEntity.CreateDate = DateTime.Now;
 
                 _unitOfWork.BeginTransaction();
-
-                //if (sellerEntity.City.Description.ToUpper() == createSeller.City.Description.ToUpper())
-                //{
-                //    _unitOfWork.SellerRepository.Update(sellerEntity.City);
-                //}
-
                 _unitOfWork.SellerRepository.Create(sellerEntity);
                 await _unitOfWork.CommitAsync();
 
@@ -64,7 +58,7 @@ namespace SellerCRUD.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error in CustomerService::CreateCustomersAsync:: {ex.Message} ");
+                _logger.LogError($"Error in SellerService::CreateSellerAsync:: {ex.Message} ");
                 throw;
             }
         }
@@ -79,11 +73,13 @@ namespace SellerCRUD.Services
                 var sellerEntity = await _unitOfWork.SellerRepository.GetByIdAsync(id);
 
                 if (sellerEntity == null)
-                    throw new ArgumentException($"Customer with id: {seller.Id} doesnt exist on DB.");
+                    throw new ArgumentException($"Seller with id: {seller.Id} doesnt exist on DB.");
 
                 sellerEntity.Name = seller.Name;
                 sellerEntity.LastName = seller.LastName;
                 sellerEntity.IdentificationNumber = seller.IdentificationNumber;
+
+                sellerEntity.UpdateDate = DateTime.Now;
 
                 _unitOfWork.BeginTransaction();
                 _unitOfWork.SellerRepository.Update(sellerEntity);
@@ -102,7 +98,7 @@ namespace SellerCRUD.Services
             try
             {
                 _unitOfWork.BeginTransaction();
-                List<SellerDto> sellersDeleted = new List<SellerDto>();
+                List<SellerDto> sellersDeleted = new ();
                 foreach (var thirdPartyId in ids)
                 {
                     var seller = _unitOfWork.SellerRepository.GetSingle(thirdPartyId);

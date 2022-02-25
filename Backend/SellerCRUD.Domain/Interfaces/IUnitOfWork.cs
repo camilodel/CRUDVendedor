@@ -9,6 +9,7 @@ namespace SellerCRUD.Domain.Interfaces
     public interface IUnitOfWork
     {
         ISellerRepository SellerRepository { get; }
+        ICityRepository CityRepository { get; }
 
         void Commit();
         Task<int> CommitAsync();
