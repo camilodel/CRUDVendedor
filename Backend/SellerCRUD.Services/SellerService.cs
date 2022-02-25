@@ -97,6 +97,7 @@ namespace SellerCRUD.Services
                 sellerEntity.Name = seller.Name;
                 sellerEntity.LastName = seller.LastName;
                 sellerEntity.IdentificationNumber = seller.IdentificationNumber;
+                sellerEntity.CityId = seller.CityId;
 
                 sellerEntity.UpdateDate = DateTime.Now;
 
