@@ -8,7 +8,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: 'api',
+        path: '',
         loadChildren: () => import('./modules/sellers/sellers.module').then(m => m.SellersModule)
       }
     ]
